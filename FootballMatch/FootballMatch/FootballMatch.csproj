@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AAB4FF23-B40F-477B-9774-27C2687AA52C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FootballMatch</RootNamespace>
+    <AssemblyName>FootballMatch</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="mysql.data, Version=6.6.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\mysql.data.dll</HintPath>
+    </Reference>
+    <Reference Include="mysql.data.entity, Version=6.6.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\mysql.data.entity.dll</HintPath>
+    </Reference>
+    <Reference Include="mysql.visualstudio, Version=6.6.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\mysql.visualstudio.dll</HintPath>
+    </Reference>
+    <Reference Include="mysql.web, Version=6.6.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\mysql.web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataGridViewComboBoxCell.cs" />
+    <Compile Include="schedule.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>schedule.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Umasou.Business\OpenSeason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\OpenSeason.Designer.cs">
+      <DependentUpon>OpenSeason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\playerAndCardsInfo.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>playerAndCardsInfo.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="RecordDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecordDetail.Designer.cs">
+      <DependentUpon>RecordDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\ScheduleExcelImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\ScheduleExcelImport.Designer.cs">
+      <DependentUpon>ScheduleExcelImport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\ScheduleManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\ScheduleManage.Designer.cs">
+      <DependentUpon>ScheduleManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\test.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>test.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Umasou.Business\AvaliableInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\AvaliableInfo.Designer.cs">
+      <DependentUpon>AvaliableInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\CreateNewSeason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\CreateNewSeason.Designer.cs">
+      <DependentUpon>CreateNewSeason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\DefaultPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\DefaultPage.Designer.cs">
+      <DependentUpon>DefaultPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\ReportOfInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\ReportOfInfo.Designer.cs">
+      <DependentUpon>ReportOfInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\ScheduleAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\ScheduleAdd.Designer.cs">
+      <DependentUpon>ScheduleAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\SeasonManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\SeasonManage.Designer.cs">
+      <DependentUpon>SeasonManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.CardRecord\addPlayerCardRecordcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.CardRecord\addPlayerCardRecordcs.Designer.cs">
+      <DependentUpon>addPlayerCardRecordcs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\AlterMatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\AlterMatch.Designer.cs">
+      <DependentUpon>AlterMatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\AlterPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\AlterPlayer.Designer.cs">
+      <DependentUpon>AlterPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\AlterTeam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\AlterTeam.Designer.cs">
+      <DependentUpon>AlterTeam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\CreateMatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\CreateMatch.Designer.cs">
+      <DependentUpon>CreateMatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\SelectGameInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\SelectGameInfo.Designer.cs">
+      <DependentUpon>SelectGameInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.CardRecord\CardRecordManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.CardRecord\CardRecordManage.Designer.cs">
+      <DependentUpon>CardRecordManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.DBA\ScheduleDAO.cs" />
+    <Compile Include="Umasou.Model\DefaultSet.cs" />
+    <Compile Include="Umasou.DBA\DefaultSetDAO.cs" />
+    <Compile Include="Umasou.DBA\MatchCardRecordDAO.cs" />
+    <Compile Include="Umasou.DBA\SeasonInfoDAO.cs" />
+    <Compile Include="Umasou.DBA\SuspendedRecordDAO.cs" />
+    <Compile Include="Umasou.GameManage\CreateNewGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.GameManage\CreateNewGame.Designer.cs">
+      <DependentUpon>CreateNewGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\CreateNewPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\CreateNewPlayer.Designer.cs">
+      <DependentUpon>CreateNewPlayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\CreateNewTeam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\CreateNewTeam.Designer.cs">
+      <DependentUpon>CreateNewTeam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Umasou.Business\matchManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\matchManage.Designer.cs">
+      <DependentUpon>matchManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\MatchPlayerInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\MatchPlayerInfo.Designer.cs">
+      <DependentUpon>MatchPlayerInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\MatchPlayerManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\MatchPlayerManage.Designer.cs">
+      <DependentUpon>MatchPlayerManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\MatchTeamManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\MatchTeamManage.Designer.cs">
+      <DependentUpon>MatchTeamManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\OpenMatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\OpenMatch.designer.cs">
+      <DependentUpon>OpenMatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\playerManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\playerManage.Designer.cs">
+      <DependentUpon>playerManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\SelectPlayerInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\SelectPlayerInfo.Designer.cs">
+      <DependentUpon>SelectPlayerInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\teamManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\teamManage.Designer.cs">
+      <DependentUpon>teamManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.DBA\ContentDAO.cs" />
+    <Compile Include="Umasou.DBA\DBUtility.cs" />
+    <Compile Include="Umasou.DBA\GameInfoDAO.cs" />
+    <Compile Include="Umasou.DBA\MatchInfoDAO.cs" />
+    <Compile Include="Umasou.DBA\MatchPlayerInfoDAO.cs" />
+    <Compile Include="Umasou.DBA\MatchTeamInfoDAO.cs" />
+    <Compile Include="Umasou.DBA\PlayerInfoDAO.cs" />
+    <Compile Include="Umasou.DBA\TeamInfoDAO.cs" />
+    <Compile Include="Umasou.GameManage\GameSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.GameManage\GameSummary.Designer.cs">
+      <DependentUpon>GameSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Model\FootballPlayer.cs" />
+    <Compile Include="Umasou.Model\CardState.cs" />
+    <Compile Include="Umasou.Model\Game.cs" />
+    <Compile Include="Umasou.Model\PlayerCardRecord.cs" />
+    <Compile Include="Umasou.Model\Schedule.cs" />
+    <Compile Include="Umasou.Model\SeasonMatch.cs" />
+    <Compile Include="Umasou.Model\SeasonOfMatch.cs" />
+    <Compile Include="Umasou.Model\SuspendedRecord.cs" />
+    <Compile Include="Umasou.Model\Team.cs" />
+    <Compile Include="Umasou.Util\checkSwitchResult.cs" />
+    <Compile Include="Umasou.Util\CheckYellowSwitchRed.cs" />
+    <Compile Include="Umasou.Util\SystemParam.cs" />
+    <Compile Include="Umasou.View\MatchChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.View\MatchChart.Designer.cs">
+      <DependentUpon>MatchChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.View\PlayerChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.View\PlayerChart.Designer.cs">
+      <DependentUpon>PlayerChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.View\TeamChart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.View\TeamChart.Designer.cs">
+      <DependentUpon>TeamChart.cs</DependentUpon>
+    </Compile>
+    <Content Include="Umasou.Business\playerAndCardsInfo.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>playerAndCardsInfo.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="RecordDetail.resx">
+      <DependentUpon>RecordDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <Content Include="Umasou.Business\test.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>test.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="schedule.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>schedule.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Umasou.Business\AvaliableInfo.resx">
+      <DependentUpon>AvaliableInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\CreateNewSeason.resx">
+      <DependentUpon>CreateNewSeason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\DefaultPage.resx">
+      <DependentUpon>DefaultPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\OpenSeason.resx">
+      <DependentUpon>OpenSeason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\ReportOfInfo.resx">
+      <DependentUpon>ReportOfInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\ScheduleExcelImport.resx">
+      <DependentUpon>ScheduleExcelImport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\ScheduleAdd.resx">
+      <DependentUpon>ScheduleAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\ScheduleManage.resx">
+      <DependentUpon>ScheduleManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\SeasonManage.resx">
+      <DependentUpon>SeasonManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.CardRecord\addPlayerCardRecordcs.resx">
+      <DependentUpon>addPlayerCardRecordcs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\AlterMatch.resx">
+      <DependentUpon>AlterMatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\AlterPlayer.resx">
+      <DependentUpon>AlterPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\AlterTeam.resx">
+      <DependentUpon>AlterTeam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\CreateMatch.resx">
+      <DependentUpon>CreateMatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\SelectGameInfo.resx">
+      <DependentUpon>SelectGameInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.CardRecord\CardRecordManage.resx">
+      <DependentUpon>CardRecordManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.GameManage\CreateNewGame.resx">
+      <DependentUpon>CreateNewGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\CreateNewPlayer.resx">
+      <DependentUpon>CreateNewPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\CreateNewTeam.resx">
+      <DependentUpon>CreateNewTeam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Umasou.Business\matchManage.resx">
+      <DependentUpon>matchManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\MatchPlayerInfo.resx">
+      <DependentUpon>MatchPlayerInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\MatchPlayerManage.resx">
+      <DependentUpon>MatchPlayerManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\MatchTeamManage.resx">
+      <DependentUpon>MatchTeamManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\OpenMatch.resx">
+      <DependentUpon>OpenMatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\playerManage.resx">
+      <DependentUpon>playerManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\SelectPlayerInfo.resx">
+      <DependentUpon>SelectPlayerInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\teamManage.resx">
+      <DependentUpon>teamManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.GameManage\GameSummary.resx">
+      <DependentUpon>GameSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.View\MatchChart.resx">
+      <DependentUpon>MatchChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.View\PlayerChart.resx">
+      <DependentUpon>PlayerChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.View\TeamChart.resx">
+      <DependentUpon>TeamChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Document\比赛说明.docx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\mysql.data.dll" />
+    <Content Include="lib\mysql.data.entity.dll" />
+    <Content Include="lib\mysql.visualstudio.dll" />
+    <Content Include="lib\mysql.web.dll" />
+    <Content Include="Resources\add.png" />
+    <Content Include="Resources\createNewFile.png" />
+    <Content Include="Resources\Exit.png" />
+    <Content Include="Resources\member_manage.png" />
+    <Content Include="Resources\openFile.png" />
+    <Content Include="Resources\organizationManage.png" />
+    <Content Include="Resources\print.png" />
+    <Content Include="Resources\printPreview.png" />
+    <Content Include="Resources\query.png" />
+    <Content Include="Resources\setting.ico" />
+    <Content Include="Resources\teamManage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>7</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
