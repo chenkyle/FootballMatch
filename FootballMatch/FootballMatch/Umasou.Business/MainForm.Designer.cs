@@ -59,28 +59,26 @@
             this.matchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newMatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.totalMatchesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ScheduleManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ViewMatchTeamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seasonManagetoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NewSeasonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TotalSeasonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.matchManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.teamManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.memberManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matchPlayerManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matchTeamManage = new System.Windows.Forms.ToolStripMenuItem();
             this.matchPlayerManage = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip_MainForm = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator_file = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator_record = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_Open = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_Create = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator_file = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_showRecord = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_addRecord = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_exit = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator_record = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_backToHomePage = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_exit = new System.Windows.Forms.ToolStripButton();
+            this.ScheduleManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_mainForm.SuspendLayout();
             this.toolStrip_MainForm.SuspendLayout();
             this.SuspendLayout();
@@ -312,7 +310,6 @@
             this.matchToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newMatchToolStripMenuItem,
             this.totalMatchesToolStripMenuItem,
-            this.ScheduleManageToolStripMenuItem,
             this.ViewMatchTeamToolStripMenuItem});
             this.matchToolStripMenuItem.Name = "matchToolStripMenuItem";
             this.matchToolStripMenuItem.Size = new System.Drawing.Size(86, 25);
@@ -332,13 +329,6 @@
             this.totalMatchesToolStripMenuItem.Text = "赛事总览";
             this.totalMatchesToolStripMenuItem.Click += new System.EventHandler(this.totalMatchesToolStripMenuItem_Click);
             // 
-            // ScheduleManageToolStripMenuItem
-            // 
-            this.ScheduleManageToolStripMenuItem.Name = "ScheduleManageToolStripMenuItem";
-            this.ScheduleManageToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
-            this.ScheduleManageToolStripMenuItem.Text = "赛程安排";
-            this.ScheduleManageToolStripMenuItem.Click += new System.EventHandler(this.ScheduleManageToolStripMenuItem_Click);
-            // 
             // ViewMatchTeamToolStripMenuItem
             // 
             this.ViewMatchTeamToolStripMenuItem.Name = "ViewMatchTeamToolStripMenuItem";
@@ -350,7 +340,8 @@
             // 
             this.seasonManagetoolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewSeasonToolStripMenuItem,
-            this.TotalSeasonsToolStripMenuItem});
+            this.TotalSeasonsToolStripMenuItem,
+            this.ScheduleManageToolStripMenuItem});
             this.seasonManagetoolStripMenuItem.Name = "seasonManagetoolStripMenuItem";
             this.seasonManagetoolStripMenuItem.Size = new System.Drawing.Size(86, 25);
             this.seasonManagetoolStripMenuItem.Text = "赛季管理";
@@ -358,41 +349,25 @@
             // NewSeasonToolStripMenuItem
             // 
             this.NewSeasonToolStripMenuItem.Name = "NewSeasonToolStripMenuItem";
-            this.NewSeasonToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.NewSeasonToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.NewSeasonToolStripMenuItem.Text = "新建赛季";
             this.NewSeasonToolStripMenuItem.Click += new System.EventHandler(this.NewSeasonToolStripMenuItem_Click);
             // 
             // TotalSeasonsToolStripMenuItem
             // 
             this.TotalSeasonsToolStripMenuItem.Name = "TotalSeasonsToolStripMenuItem";
-            this.TotalSeasonsToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.TotalSeasonsToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.TotalSeasonsToolStripMenuItem.Text = "赛季总览";
             this.TotalSeasonsToolStripMenuItem.Click += new System.EventHandler(this.TotalSeasonsToolStripMenuItem_Click);
             // 
             // systemManageToolStripMenuItem
             // 
             this.systemManageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.matchManageToolStripMenuItem,
-            this.teamManageToolStripMenuItem,
             this.memberManageToolStripMenuItem,
             this.matchPlayerManageToolStripMenuItem});
             this.systemManageToolStripMenuItem.Name = "systemManageToolStripMenuItem";
             this.systemManageToolStripMenuItem.Size = new System.Drawing.Size(86, 25);
             this.systemManageToolStripMenuItem.Text = "系统管理";
-            // 
-            // matchManageToolStripMenuItem
-            // 
-            this.matchManageToolStripMenuItem.Name = "matchManageToolStripMenuItem";
-            this.matchManageToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
-            this.matchManageToolStripMenuItem.Text = "赛季管理";
-            this.matchManageToolStripMenuItem.Click += new System.EventHandler(this.matchManageToolStripMenuItem_Click);
-            // 
-            // teamManageToolStripMenuItem
-            // 
-            this.teamManageToolStripMenuItem.Name = "teamManageToolStripMenuItem";
-            this.teamManageToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
-            this.teamManageToolStripMenuItem.Text = "球队管理";
-            this.teamManageToolStripMenuItem.Click += new System.EventHandler(this.teamManageToolStripMenuItem_Click);
             // 
             // memberManageToolStripMenuItem
             // 
@@ -450,16 +425,6 @@
             this.toolStrip_MainForm.TabIndex = 1;
             this.toolStrip_MainForm.Text = "主界面工具栏";
             // 
-            // toolStripSeparator_file
-            // 
-            this.toolStripSeparator_file.Name = "toolStripSeparator_file";
-            this.toolStripSeparator_file.Size = new System.Drawing.Size(6, 39);
-            // 
-            // toolStripSeparator_record
-            // 
-            this.toolStripSeparator_record.Name = "toolStripSeparator_record";
-            this.toolStripSeparator_record.Size = new System.Drawing.Size(6, 39);
-            // 
             // toolStripButton_Open
             // 
             this.toolStripButton_Open.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -479,6 +444,11 @@
             this.toolStripButton_Create.Size = new System.Drawing.Size(36, 36);
             this.toolStripButton_Create.Text = "新建";
             this.toolStripButton_Create.Click += new System.EventHandler(this.toolStripButton_Create_Click);
+            // 
+            // toolStripSeparator_file
+            // 
+            this.toolStripSeparator_file.Name = "toolStripSeparator_file";
+            this.toolStripSeparator_file.Size = new System.Drawing.Size(6, 39);
             // 
             // toolStripButton_showRecord
             // 
@@ -500,15 +470,10 @@
             this.toolStripButton_addRecord.Text = "添加罚牌记录";
             this.toolStripButton_addRecord.Click += new System.EventHandler(this.toolStripButton_addRecord_Click);
             // 
-            // toolStripButton_exit
+            // toolStripSeparator_record
             // 
-            this.toolStripButton_exit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_exit.Image = global::FootballMatch.Properties.Resources.Exit;
-            this.toolStripButton_exit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_exit.Name = "toolStripButton_exit";
-            this.toolStripButton_exit.Size = new System.Drawing.Size(36, 36);
-            this.toolStripButton_exit.Text = "退出";
-            this.toolStripButton_exit.Click += new System.EventHandler(this.toolStripButton_exit_Click);
+            this.toolStripSeparator_record.Name = "toolStripSeparator_record";
+            this.toolStripSeparator_record.Size = new System.Drawing.Size(6, 39);
             // 
             // toolStripButton_backToHomePage
             // 
@@ -519,6 +484,23 @@
             this.toolStripButton_backToHomePage.Size = new System.Drawing.Size(36, 36);
             this.toolStripButton_backToHomePage.Text = "首页";
             this.toolStripButton_backToHomePage.Click += new System.EventHandler(this.toolStripButton_backToHomePage_Click);
+            // 
+            // toolStripButton_exit
+            // 
+            this.toolStripButton_exit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_exit.Image = global::FootballMatch.Properties.Resources.Exit;
+            this.toolStripButton_exit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_exit.Name = "toolStripButton_exit";
+            this.toolStripButton_exit.Size = new System.Drawing.Size(36, 36);
+            this.toolStripButton_exit.Text = "退出";
+            this.toolStripButton_exit.Click += new System.EventHandler(this.toolStripButton_exit_Click);
+            // 
+            // ScheduleManageToolStripMenuItem
+            // 
+            this.ScheduleManageToolStripMenuItem.Name = "ScheduleManageToolStripMenuItem";
+            this.ScheduleManageToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.ScheduleManageToolStripMenuItem.Text = "赛程安排";
+            this.ScheduleManageToolStripMenuItem.Click += new System.EventHandler(this.ScheduleManageToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -564,8 +546,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton_Create;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator_file;
         private System.Windows.Forms.ToolStripButton toolStripButton_exit;
-        private System.Windows.Forms.ToolStripMenuItem matchManageToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem teamManageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem matchPlayerManageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem matchTeamManage;
         private System.Windows.Forms.ToolStripMenuItem matchPlayerManage;
@@ -597,9 +577,9 @@
         private System.Windows.Forms.ToolStripMenuItem totalMatchesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem NewSeasonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem TotalSeasonsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ScheduleManageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ViewMatchTeamToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton_backToHomePage;
+        private System.Windows.Forms.ToolStripMenuItem ScheduleManageToolStripMenuItem;
     }
 }
 

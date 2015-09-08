@@ -20,6 +20,7 @@ namespace FootballMatch.Umasou.Business
         public OpenMatch()
         {
             InitializeComponent();
+          
         }
 
         #region[实例变量]
@@ -79,6 +80,7 @@ namespace FootballMatch.Umasou.Business
             }
         }
         //双击表格的单元格
+        /******
         private void dataGridView_match_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -119,6 +121,7 @@ namespace FootballMatch.Umasou.Business
             {
             }
         }
+       * *******/
         //画出表格的行数
         private void dataGridView_match_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
@@ -138,8 +141,7 @@ namespace FootballMatch.Umasou.Business
                 SystemParam.setMatchID(matchID);
                 SystemParam.setMatch(match);
                 SystemParam.setCurrentSelectedSeason(season);
-                
-
+               
                 //测试
                 SystemParam.setCurrentSelectedMatchName(match.getName());
                 SystemParam.getDefaultPageForm().UpdateTreeView(season.getmatchName(), 5);
@@ -151,6 +153,7 @@ namespace FootballMatch.Umasou.Business
                     {
                         SystemParam.setAvaliableInfoForm(new AvaliableInfo(SystemParam.getMainForm()));
                         SystemParam.getAvaliableInfoForm().Show();
+              
                     }
                     else
                     {
@@ -160,11 +163,19 @@ namespace FootballMatch.Umasou.Business
                             openMatch.ShowDialog();
                         }
                     }
+                 
+
+
+
                 }
                 else
                 {
                     SystemParam.getAvaliableInfoForm().flushDataInfo(SystemParam.getMatch());
+                    SystemParam.getTeamManageForm().flushDataInfo();
                 }
+
+                 
+                
                 //关闭本窗体
                 this.Close();
             }
@@ -213,6 +224,75 @@ namespace FootballMatch.Umasou.Business
             }
             
              
+        }
+
+        private void dataGridView_match_KeyUp(object sender, KeyEventArgs e)
+        {
+             
+            
+                
+                    try
+                    {
+                        matchID = Convert.ToInt32(dataGridView_match.SelectedRows[0].Cells["match_ID"].Value);
+                        rowIndex = dataGridView_match.SelectedRows[0].Index;
+                        match = ContentDAO.getMatchInfo(matchID);
+                        textBox_Name.Text = match.getName();
+                        //
+                        seasonList = SeasonInfoDAO.getSeasonsOfCertainMatch(match.getName());
+                        listBox_Seasons.Items.Clear();
+                        richTextBox_SeasonDescription.Text = "";
+                        foreach (SeasonOfMatch s in seasonList)
+                        {
+                            listBox_Seasons.Items.Add("第" + s.getNumOfSeason() + "赛季");
+
+                        }
+
+
+                        richTextBox_MatchDescription.Text = match.getDescription();
+
+
+
+                    }
+                    catch (NullReferenceException ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                    }
+        
+        }
+
+        private void dataGridView_match_KeyDown(object sender, KeyEventArgs e)
+        {
+
+
+
+            try
+            {
+                matchID = Convert.ToInt32(dataGridView_match.SelectedRows[0].Cells["match_ID"].Value);
+                rowIndex = dataGridView_match.SelectedRows[0].Index;
+                match = ContentDAO.getMatchInfo(matchID);
+                textBox_Name.Text = match.getName();
+                //
+                seasonList = SeasonInfoDAO.getSeasonsOfCertainMatch(match.getName());
+                listBox_Seasons.Items.Clear();
+                richTextBox_SeasonDescription.Text = "";
+                foreach (SeasonOfMatch s in seasonList)
+                {
+                    listBox_Seasons.Items.Add("第" + s.getNumOfSeason() + "赛季");
+
+                }
+
+
+                richTextBox_MatchDescription.Text = match.getDescription();
+
+
+
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        
+
         }
 
 

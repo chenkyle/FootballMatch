@@ -18,6 +18,7 @@ namespace FootballMatch.Umasou.Business
         {
             InitializeComponent();
             this.MdiParent = mainForm;
+            SystemParam.setTeamManageForm(this);
         }
 
         #region[声明实例]
@@ -29,12 +30,14 @@ namespace FootballMatch.Umasou.Business
 
         private void teamManage_Load(object sender, EventArgs e)
         {
-
+            this.showTeamData();
+            //设置窗体最大化
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void teamManage_Shown(object sender, EventArgs e)
         {
-            this.showTeamData();
+           // this.showTeamData();
             //设置窗体最大化
             this.WindowState = FormWindowState.Maximized;
         }
@@ -104,7 +107,7 @@ namespace FootballMatch.Umasou.Business
                 dataGridView_teamManage.Rows.Clear();
             }
             //取出数据
-            List<Team> list =TeamInfoDAO.getTeamInfo();
+            List<Team> list =TeamInfoDAO.getTeamInfoOfCertainMatch(SystemParam.getMatch());
             //往dataGridView中添加数据
             for (int i = 0; i < list.Count; i++)
             {
@@ -260,5 +263,11 @@ namespace FootballMatch.Umasou.Business
         }
         #endregion
 
+        public void  flushDataInfo(){
+
+
+            this.showTeamData();
+
+         }
     }
 }

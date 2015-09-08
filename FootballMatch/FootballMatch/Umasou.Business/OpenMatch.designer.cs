@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView_match = new System.Windows.Forms.DataGridView();
             this.match_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.matchName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,14 +57,14 @@
             this.dataGridView_match.AllowUserToDeleteRows = false;
             this.dataGridView_match.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_match.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_match.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_match.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_match.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_match.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.match_ID,
@@ -81,8 +81,9 @@
             this.dataGridView_match.Size = new System.Drawing.Size(443, 191);
             this.dataGridView_match.TabIndex = 0;
             this.dataGridView_match.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_match_CellClick);
-            this.dataGridView_match.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_match_CellDoubleClick);
             this.dataGridView_match.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dataGridView_match_RowPostPaint);
+            this.dataGridView_match.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView_match_KeyDown);
+            this.dataGridView_match.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView_match_KeyUp);
             // 
             // match_ID
             // 

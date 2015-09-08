@@ -242,24 +242,14 @@ namespace FootballMatch
             else {
 
                 SystemParam.getMatchManageForm().Activate();
-               // this.openFormWithoutOtherChlidForm(this,SystemParam.getMatchManageForm());
+              //this.openFormWithoutOtherChlidForm(this,SystemParam.getMatchManageForm());
             }
 
         }
         //球队管理，管理所有的球队基本信息，可以删除，修改，添加等
         private void teamManageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!this.checkChildFormExist("teamManage"))
-            {
-                SystemParam.setTeamManageForm(new teamManage(SystemParam.getMainForm()));
-                SystemParam.getTeamManageForm().Show();
-            }
-
-            else
-            {
-                SystemParam.getTeamManageForm().Activate();
-                //this.openFormWithoutOtherChlidForm(this, SystemParam.getTeamManageForm());
-            }
+           
 
         }
         //球员管理,管理所有的球员，设定球员所属的球队，可以删除，修改，添加等
@@ -462,7 +452,19 @@ namespace FootballMatch
 
         private void ViewMatchTeamToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!this.checkChildFormExist("teamManage"))
+            {
+                SystemParam.setTeamManageForm(new teamManage(SystemParam.getMainForm()));
+                SystemParam.getTeamManageForm().Show();
+            }
 
+            else
+            {
+                
+                  SystemParam.getTeamManageForm().Activate();
+                 
+                //this.openFormWithoutOtherChlidForm(this, SystemParam.getTeamManageForm());
+            }
         }
 
         private void toolStripButton_backToHomePage_Click(object sender, EventArgs e)
@@ -484,7 +486,6 @@ namespace FootballMatch
 
         private void ScheduleManageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             if (!this.checkChildFormExist("ScheduleManage"))
             {
                 SystemParam.setScheduleManageForm(new ScheduleAdd(SystemParam.getMainForm()));
@@ -498,9 +499,9 @@ namespace FootballMatch
 
             }
 
-
-
         }
+
+       
 
  
 

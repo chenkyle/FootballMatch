@@ -133,6 +133,42 @@ namespace FootballMatch.Umasou.DBA
             }
             return list;
         }
+
+         //查询特定赛事所属的球队
+        public static List<Team> getTeamInfoOfCertainMatch(SeasonMatch match) {
+
+            //声明实例
+            List<Team> list = new List<Team>();
+            //执行查询数据库操作
+            DBUtility dbutility = new DBUtility();
+            // string SQL = "select ID,teamName,teamLeader,teamManager,teamCoach from team order by ID";
+            string SQL = "select * from team where matchName= '"+match.getName()+"' order by ID";
+            try
+            {
+                dbutility.openConnection();
+                MySqlDataReader rd = dbutility.ExecuteQuery(SQL);
+                while (rd.Read())
+                {
+                    Team team = new Team(Convert.ToInt32(rd[0]), Convert.ToString(rd[1]), Convert.ToString(rd[2]),
+                              Convert.ToString(rd[3]), Convert.ToString(rd[4]), Convert.ToString(rd[5]),
+                              Convert.ToString(rd[6]), Convert.ToString(rd[7]), Convert.ToString(rd[8]),
+                              Convert.ToString(rd[9]));
+
+                    list.Add(team);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                dbutility.Close();
+            }
+            return list;  
+        }
+
+
         //删除球队信息
         public static void deleteTeamInfo(int teamID)
         {
