@@ -50,7 +50,7 @@ namespace FootballMatch.Umasou.Business
             }
             else
             {
-                List<Team> _teamList = TeamInfoDAO.getTeamInfo();
+                List<Team> _teamList = TeamInfoDAO.getTeamInfoOfCertainMatch(SystemParam.getMatch());
                 Team _team = new Team();
                 comboBox_teamName.Items.Add("");  //添加一个空白字符串
                 for (int i = 0; i < _teamList.Count; i++)
@@ -103,14 +103,15 @@ namespace FootballMatch.Umasou.Business
                                 if (MessageBox.Show("添加新球员成功，是否继续添加", "继续添加提示", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                                 {
                                     //刷新管理球队界面数据信息
-                                    SystemParam.getPlayerManageForm().showPlayerData();
+                                    SystemParam.getPlayerManageForm().showCertainTeamPlayerData();
+                                    
                                     //清空文本框
                                     this.clearTextBox();
                                 }
                                 else
                                 {
                                     //刷新管理球队界面数据信息
-                                    SystemParam.getPlayerManageForm().showPlayerData();
+                                    SystemParam.getPlayerManageForm().showCertainTeamPlayerData();
                                     this.Close();  //添加成功后自动关闭本页面
                                 }
                             }
@@ -134,6 +135,7 @@ namespace FootballMatch.Umasou.Business
             textBox_teamLeader.Text = "";
             textBox_teamManager.Text = "";
             comboBox_teamName.Text = "";
+            textBox_IDnum.Text = "";
         }
         #endregion
 

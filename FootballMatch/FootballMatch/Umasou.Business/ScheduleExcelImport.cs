@@ -54,7 +54,7 @@ namespace FootballMatch.Umasou.Business
 
         private void button_saveSchedule_Click(object sender, EventArgs e)
         {
-            DialogResult RSS = MessageBox.Show(this, "确定要保存表单赛程吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+              DialogResult RSS = MessageBox.Show(this, "确定要保存表单赛程吗？", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             switch (RSS)
             {
                 case DialogResult.Yes:
@@ -62,6 +62,8 @@ namespace FootballMatch.Umasou.Business
                         int rowNum = this.dataGridView_ExcelImport.Rows.Count - 1;  //得到总列数，其中要除去新行
                         int cellNum = this.dataGridView_ExcelImport.Columns.Count;//得到总列数
                         int flag = 0;//验证表格是否有空值
+                        int isTheTeam = 0;//验证表格中特定的两列是否是存在的球队,默认0是
+                        int isHomeEqualsGuest = 0;  //验证表格中是否存在主队和客队一样的球队，默认0不等
                         List<Schedule> scheduleList = new List<Schedule>();
                         for (int i = 0; i < rowNum; i++)
                         {
@@ -71,63 +73,78 @@ namespace FootballMatch.Umasou.Business
 
                                 if (this.dataGridView_ExcelImport.Rows[i].Cells[j].Value == null)
                                     flag = 1;
-                            }
+
+                                }
+                                 if(this.dataGridView_ExcelImport.Rows[i].Cells[2].Value.ToString()==this.dataGridView_ExcelImport.Rows[i].Cells[3].Value.ToString()){
+                                     isHomeEqualsGuest=1;
+                                 }
+                                 if (checkIsTheTeam(this.dataGridView_ExcelImport.Rows[i].Cells[2].Value.ToString())||checkIsTheTeam(this.dataGridView_ExcelImport.Rows[i].Cells[3].Value.ToString()))
+                                 { isTheTeam = 1; }
                         }
                         if (flag == 1)
                             MessageBox.Show("当前表格有未填写的空格，请确认！");
                         else
                         {
+                            if (isTheTeam == 1) { MessageBox.Show("表格中球队存在不是该赛事的球队，请确认！"); }
 
-
-                            for (int k = 0; k < rowNum; k++)
+                            else
                             {
-
-                                Schedule s = new Schedule();  //实例化一条赛程记录，存放到list中
-                                s.setMatchId(8);
-                                s.setSeasonId(1);
-                                for (int l = 0; l < cellNum; l++)
+                                if (isHomeEqualsGuest == 1) { MessageBox.Show("表格中球队存在主客队为同一球队，请确认！"); }
+                               
+                                else
+                                  {
+                                for (int k = 0; k < rowNum; k++)
                                 {
-                                    switch (l)
-                                    {
-                                        case 0:
-                                            s.setTurn(Convert.ToInt32(this.dataGridView_ExcelImport.Rows[k].Cells[l].Value.ToString()));
-                                            break;
-                                        case 1:
-                                            s.setGameDate(this.dataGridView_ExcelImport.Rows[k].Cells[l].Value.ToString());
-                                            break;
-                                        case 2:
-                                            s.setHomeTeam(this.dataGridView_ExcelImport.Rows[k].Cells[l].Value.ToString());
-                                            break;
-                                        case 3:
-                                            s.setGuestTeam(this.dataGridView_ExcelImport.Rows[k].Cells[l].Value.ToString());
-                                            break;
-                                        default:
-                                            break;
-                                    }
-                                }
-                                scheduleList.Add(s);
-                            }
-                            ScheduleDAO.addSchedule(scheduleList);
-                            MessageBox.Show("插入数据成功！");
-                            //清除已经提交的数据，如果设定的是数据源则源设置为空，不是用clear（）方法清除
-                            if (this.dataGridView_ExcelImport.DataSource != null)
-            {
-                this.dataGridView_ExcelImport.DataSource = null;
-                this.textBox_fileName.Text = "";
-            }
-            else
-            {
-                this.dataGridView_ExcelImport.Rows.Clear();
-                this.textBox_fileName.Text = "";
-            }
- 
 
+                                    Schedule s = new Schedule();  //实例化一条赛程记录，存放到list中
+                                    s.setMatchId(8);
+                                    s.setSeasonId(1);
+                                    for (int l = 0; l < cellNum; l++)
+                                    {
+                                        switch (l)
+                                        {
+                                            case 0:
+                                                s.setTurn(Convert.ToInt32(this.dataGridView_ExcelImport.Rows[k].Cells[l].Value.ToString()));
+                                                break;
+                                            case 1:
+                                                s.setGameDate(this.dataGridView_ExcelImport.Rows[k].Cells[l].Value.ToString());
+                                                break;
+                                            case 2:
+                                                s.setHomeTeam(this.dataGridView_ExcelImport.Rows[k].Cells[l].Value.ToString());
+                                                break;
+                                            case 3:
+                                                s.setGuestTeam(this.dataGridView_ExcelImport.Rows[k].Cells[l].Value.ToString());
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    }
+                                    scheduleList.Add(s);
+                                }
+
+                                ScheduleDAO.addSchedule(scheduleList);
+                                MessageBox.Show("插入数据成功！");
+                                //清除已经提交的数据，如果设定的是数据源则源设置为空，不是用clear（）方法清除
+                                if (this.dataGridView_ExcelImport.DataSource != null)
+                                {
+                                    this.dataGridView_ExcelImport.DataSource = null;
+                                    this.textBox_fileName.Text = "";
+                                }
+                                else
+                                {
+                                    this.dataGridView_ExcelImport.Rows.Clear();
+                                    this.textBox_fileName.Text = "";
+                                }
+                               
+                            } //表格中球队存在主客队为同一球队
+                            }//球队存在不是该赛事的球队
                         }//else表格不为空的
                     }
                     break;
                 case DialogResult.No:
                     break;
             }
+        
             
         }
 
@@ -164,68 +181,90 @@ namespace FootballMatch.Umasou.Business
                 return;
             }
             //调用导入数据方法
-            EcxelToDataGridView(strName, this.dataGridView_ExcelImport);
+            ExcelImport.excelToDataGridView(strName, this.dataGridView_ExcelImport);
 
         }
 
+        public bool checkIsTheTeam(string teamName){   //检查导入表格中的数据，球队是否是该赛事球队，不是则返回true,是则返回false
 
-
-        /// Excel数据导入方法
-        public void EcxelToDataGridView(string filePath, DataGridView dgv)
-        {
-
-            //根据路径打开一个Excel文件并将数据填充到DataSet中
-
-            /*****
-            //2003（Microsoft.Jet.Oledb.4.0）
-            string strConn = string.Format("Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'", excelFilePath);
-            //2010（Microsoft.ACE.OLEDB.12.0）
-            string strConn = string.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties='Excel 8.0;HDR=Yes;IMEX=1;'", excelFilePath);
-            
-            *******/
-            string strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source= " + filePath + ";Extended Properties ='Excel 8.0;HDR=Yes;IMEX=1'";//HDR=YES 有两个值:YES/NO,表示第一行是否字段名,默认是YES,第一行是字段名
-            OleDbConnection conn = new OleDbConnection(strConn);
-            conn.Open();
-            string strExcel = "";
-            OleDbDataAdapter myCommand = null;  //建立数据适配器
-            DataSet ds = null;
-            strExcel = "select  * from [sheet1$]";  //表名的写法也应注意不同，对应的excel表为sheet1，在这里要在其后加美元符号$，并用中括号
-            myCommand = new OleDbDataAdapter(strExcel, strConn);
-            ds = new DataSet();
-            myCommand.Fill(ds, "table1");  ////把数据适配器中的数据读到数据集中的一个表中（此处表名为table1，可以任取表名）
-
-            /***********
-            //根据DataGridView的列构造一个新的DataTable
-            DataTable tb = new DataTable();
-            foreach (DataGridViewColumn dgvc in dgv.Columns)
-            {
-                if (dgvc.Visible && dgvc.CellType != typeof(DataGridViewCheckBoxCell))
-                {
-                    DataColumn dc = new DataColumn();
-                    dc.ColumnName = dgvc.DataPropertyName;
-                    //dc.DataType = dgvc.ValueType;//若需要限制导入时的数据类型则取消注释，前提是DataGridView必须先绑定一个数据源那怕是空的DataTable
-                    tb.Columns.Add(dc);
-                }
+            List<Team> list = new List<Team>();
+            list = TeamInfoDAO.getTeamInfoOfCertainMatch(SystemParam.getMatch());
+            foreach(Team t in list){
+             if(t.getName()==teamName)
+                 return false;
             }
-            //根据Excel的行逐一对上面构造的DataTable的列进行赋值
-            foreach (DataRow excelRow in ds.Tables[0].Rows)
-            {
-                int i = 0;
-                DataRow dr = tb.NewRow();
-                foreach (DataColumn dc in tb.Columns)
-                {
-                    dr[dc] = excelRow[i];
-                    i++;
-                }
-                tb.Rows.Add(dr);
-            }
-             * ********/
-            //在DataGridView中显示导入的数据
-            dgv.DataSource = ds.Tables[0];
-            
 
+             return true;
         }
+        //此方法存在问题
+        public bool checkOnlyInOneTurn() {
+                                           //每一个轮次，每个球队只出现一次，锦标赛的主客场算作两个轮次,
+            
+            int count = 0;//统计同一轮次内的记录数
+            List<string> tList = new List<string>(); //将同一个轮次内的球队排他性存入list中，如果最后list中元素个数不等于2倍(同一轮最后一个row+1)则该轮中存在同一球队出现两次
+            int row = this.dataGridView_ExcelImport.Rows.Count;
+            for (int i = 0; i < row - 1; i++) //统计所有同一轮次的球队名称到tlist
+             {
+                 if (Convert.ToInt32(this.dataGridView_ExcelImport.Rows[i].Cells[0].Value) == Convert.ToInt32(this.dataGridView_ExcelImport.Rows[i+1].Cells[0].Value)) //顺序分割每个轮次，如果轮次不一样则执行else
+                 { 
+                    if(i<row-2){                 
+                     Console.WriteLine(i);
+                     count++;
+                     if (!tList.Contains(this.dataGridView_ExcelImport.Rows[i].Cells[2].Value.ToString()))
+                         tList.Add(this.dataGridView_ExcelImport.Rows[i].Cells[2].Value.ToString());
+                     if (!tList.Contains(this.dataGridView_ExcelImport.Rows[i].Cells[3].Value.ToString()))
+                     { tList.Add(this.dataGridView_ExcelImport.Rows[i].Cells[3].Value.ToString()); }
+                     Console.WriteLine(count);
+                     Console.WriteLine(tList.Count);}
 
+                     else{
+                         Console.WriteLine(i);
+                         count++;
+                         if (!tList.Contains(this.dataGridView_ExcelImport.Rows[i].Cells[2].Value.ToString()))
+                             tList.Add(this.dataGridView_ExcelImport.Rows[i].Cells[2].Value.ToString());
+                         if (!tList.Contains(this.dataGridView_ExcelImport.Rows[i].Cells[3].Value.ToString()))
+                         { tList.Add(this.dataGridView_ExcelImport.Rows[i].Cells[3].Value.ToString()); }
+                         Console.WriteLine(count);
+                         Console.WriteLine(tList.Count);
+                         if (!tList.Contains(this.dataGridView_ExcelImport.Rows[i+1].Cells[2].Value.ToString()))
+                             tList.Add(this.dataGridView_ExcelImport.Rows[i+1].Cells[2].Value.ToString());
+                         if (!tList.Contains(this.dataGridView_ExcelImport.Rows[i+1].Cells[3].Value.ToString()))
+                         { tList.Add(this.dataGridView_ExcelImport.Rows[i+1].Cells[3].Value.ToString()); }
+                         Console.WriteLine(tList.Count);
+                         if (count != 0)
+                         {
+                             if (2 * (count+1) != tList.Count)
+                             {
+                                 Console.WriteLine(count);
+                                 Console.WriteLine(tList.Count);
+                                 MessageBox.Show("表格赛事中第" + Convert.ToInt32(this.dataGridView_ExcelImport.Rows[i].Cells[0].Value) + "轮存在不唯一的球队");
+                                 return false;
+                             }
+
+                              
+                         }
+
+
+
+                     }
+                 }
+                 else
+                 {
+                     if (count != 0)
+                     {
+                         if (2 * count != tList.Count)
+                         {
+                             MessageBox.Show("表格赛事中第"+Convert.ToInt32(this.dataGridView_ExcelImport.Rows[i].Cells[0].Value)+"轮存在不唯一的球队");
+                             return false;
+                         }
+                        
+                         count = 0; tList.Clear(); 
+                     }
+                 
+                 }
+             }//for
+            return true; //所有记录检查通过
+        } 
    
     }
 }

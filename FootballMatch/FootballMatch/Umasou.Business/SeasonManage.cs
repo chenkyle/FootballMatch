@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FootballMatch.Umasou.DBA;
 using FootballMatch.Umasou.Model;
+using FootballMatch.Umasou.Util;
 
 namespace FootballMatch.Umasou.Business
 {
@@ -92,7 +93,11 @@ namespace FootballMatch.Umasou.Business
                 dataGridView_seasons.Rows.Clear();
             }
             //取出数据
-            List<SeasonOfMatch> list = SeasonInfoDAO.AllSeasons();
+           
+            
+            //此处应该判断一下当前选择赛事与赛季没有
+
+            List<SeasonOfMatch> list = SeasonInfoDAO.getSeasonsOfCertainMatch(SystemParam.getMatch().getName());
             //往dataGridView中添加数据
             for (int i = 0; i < list.Count; i++)
             {

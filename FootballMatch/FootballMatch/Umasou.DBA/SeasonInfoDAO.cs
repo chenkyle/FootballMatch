@@ -20,8 +20,8 @@ namespace FootballMatch.Umasou.DBA
         public static void addNewSeasonInfo(SeasonOfMatch season)
         {
             DBUtility dbutility = new DBUtility();
-            string sql = "insert into gameseason(id,matchname,numofseason,seasondescription) values('" + season.getId()
-              +"','" + season.getmatchName() + "','" + season.getNumOfSeason() + "','" + season.getSeasonDescription() + "')";
+            string sql = "insert into gameseason(id,matchname,numofseason,seasondescription,isCurrentSeason,numOfTurn) values('" + season.getId()
+              +"','" + season.getmatchName() + "','" + season.getNumOfSeason() + "','" + season.getSeasonDescription() + "',"+1+","+season.getNumOfTurn()+")";
 
              
             try
@@ -86,14 +86,14 @@ namespace FootballMatch.Umasou.DBA
             List<SeasonOfMatch> list = new List<SeasonOfMatch>();
             //执行查询数据库操作
             DBUtility dbutility = new DBUtility();
-            string SQL = "select id,matchname,seasondescription,numofseason from gameseason order by id";
+            string SQL = "select id,matchname,seasondescription,numofseason,numOfTurn from gameseason order by id";
             try
             {
                 dbutility.openConnection();
                 MySqlDataReader rd = dbutility.ExecuteQuery(SQL);
                 while (rd.Read())
                 {
-                    list.Add(new SeasonOfMatch(Convert.ToInt32(rd[0]), Convert.ToString(rd[1]), Convert.ToString(rd[2]), Convert.ToInt32(rd[3])));
+                    list.Add(new SeasonOfMatch(Convert.ToInt32(rd[0]), Convert.ToString(rd[1]), Convert.ToString(rd[2]), Convert.ToInt32(rd[3]), Convert.ToInt32(rd[4])));
                 }
             }
             catch (MySqlException ex)
@@ -120,14 +120,14 @@ namespace FootballMatch.Umasou.DBA
             List<SeasonOfMatch> list = new List<SeasonOfMatch>();
             //执行查询数据库操作
             DBUtility dbutility = new DBUtility();
-            string SQL = "select id,matchname,seasondescription,numofseason from gameseason where matchname = '"+matchName+"' order by id";
+            string SQL = "select id,matchname,seasondescription,numofseason,numOfTurn from gameseason where matchname = '"+matchName+"' order by id";
             try
             {
                 dbutility.openConnection();
                 MySqlDataReader rd = dbutility.ExecuteQuery(SQL);
                 while (rd.Read())
                 {
-                    list.Add(new SeasonOfMatch(Convert.ToInt32(rd[0]), Convert.ToString(rd[1]), Convert.ToString(rd[2]), Convert.ToInt32(rd[3])));
+                    list.Add(new SeasonOfMatch(Convert.ToInt32(rd[0]), Convert.ToString(rd[1]), Convert.ToString(rd[2]), Convert.ToInt32(rd[3]), Convert.ToInt32(rd[4])));
                 }
             }
             catch (MySqlException ex)
@@ -145,6 +145,72 @@ namespace FootballMatch.Umasou.DBA
 
         }
         #endregion
+
+
+        #region[返回特定赛事的最近一次赛事，即赛季num最大值]
+
+        public static int getMaxSeasonNumOfMatch(string matchName)  
+        {
+            int maxSeasonNum=0;
+            //执行查询数据库操作
+            DBUtility dbutility = new DBUtility();
+            string SQL = "select max(numofseason) from gameseason where matchname = '" + matchName + "' ";
+            try
+            {
+                dbutility.openConnection();
+                MySqlDataReader rd = dbutility.ExecuteQuery(SQL);
+                while (rd.Read())
+                {
+                    
+                    maxSeasonNum = Convert.ToInt32(Convert.ToString(rd[0]));
+                   
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString()+"在这里出错！");
+
+               
+            }
+            finally
+            {
+                dbutility.Close();
+            }
+             
+            return maxSeasonNum;
+
+            
+
+        }
+        #endregion
+        //检查赛季表特定赛事的赛季是否为空,不为空返回false
+        public static bool checkSeasonOfCertainMatchIsNull(string matchName) 
+        {
+
+            //执行查询数据库操作
+            DBUtility dbutility = new DBUtility();
+            string SQL = "select count(ID) from gameseason where matchname = '" + matchName + "' ";
+            try
+            {
+                dbutility.openConnection();
+                MySqlDataReader rd = dbutility.ExecuteQuery(SQL);
+                while (rd.Read())
+                {
+                    if (Convert.ToInt32(rd[0]) != 0)
+                        return false;
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                dbutility.Close();
+            }
+
+            return true;
+        }
 
     }
 }

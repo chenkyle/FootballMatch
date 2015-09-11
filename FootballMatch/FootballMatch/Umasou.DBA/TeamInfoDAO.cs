@@ -50,7 +50,7 @@ namespace FootballMatch.Umasou.DBA
             Team team = new Team();
             //执行查询数据库操作
             DBUtility dbutility = new DBUtility();
-            string SQL = "select ID,teamName,teamLeader,teamManager,teamCoach from team where teamName='" + teamName + "'";
+            string SQL = "select ID,teamName,teamLeader,teamManager,teamCoach,location from team where teamName='" + teamName + "'";
             try
             {
                 dbutility.openConnection();
@@ -62,6 +62,7 @@ namespace FootballMatch.Umasou.DBA
                     team.setLeader(Convert.ToString(rd[2]));
                     team.setManager(Convert.ToString(rd[3]));
                     team.setCoach(Convert.ToString(rd[4]));
+                    team.setLocation(Convert.ToString(rd[5]));
                 }
             }
             catch (MySqlException ex)
@@ -74,7 +75,7 @@ namespace FootballMatch.Umasou.DBA
             }
             return team;
         }
-        //检查赛事名称是否存在
+        //检查球队名称是否存在
         public static bool checkTeamNameExist(string name)
         {
             bool flag = false;
@@ -282,5 +283,40 @@ namespace FootballMatch.Umasou.DBA
                 dbutility.Close();
             }
         }
+
+
+        //往数据库中添加球队列表，返回是否添加成功的信息
+        public static bool addNewTeamList(List<Team> teamList)
+        {
+            DBUtility dbutility = new DBUtility();
+            try
+            {
+                dbutility.openConnection();
+                for (int i = 0; i < teamList.Count;i++ )
+                {
+                    string SQL = "insert into team(teamName,teamLeader,teamManager,teamCoach,teamFullName,birthDate,matchName,location,introduction) values('";
+                    SQL = SQL + teamList[i].getName() + "','" + teamList[i].getLeader() + "','" + teamList[i].getManager() + "','" + teamList[i].getCoach() + "','" + teamList[i].getTeamFullName() +
+                              "','" + teamList[i].getBirthDate() + "','" + teamList[i].getMatchName() + "','" + teamList[i].getLocation() + "','" + teamList[i].getIntroduction() + "')";
+
+                    dbutility.ExecuteUpdate(SQL);
+                }
+               
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+            finally
+            {
+                dbutility.Close();
+            }
+        }
+
+
+
+
+
     }
 }

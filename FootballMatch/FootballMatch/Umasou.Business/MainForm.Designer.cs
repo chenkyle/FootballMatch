@@ -63,6 +63,7 @@
             this.seasonManagetoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NewSeasonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TotalSeasonsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScheduleManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.memberManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.matchPlayerManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +79,7 @@
             this.toolStripSeparator_record = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_backToHomePage = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_exit = new System.Windows.Forms.ToolStripButton();
-            this.ScheduleManageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.添加比赛ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_mainForm.SuspendLayout();
             this.toolStrip_MainForm.SuspendLayout();
             this.SuspendLayout();
@@ -146,6 +147,8 @@
             // 
             // editToolStripMenuItem
             // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.添加比赛ToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(54, 25);
             this.editToolStripMenuItem.Text = "编辑";
@@ -349,16 +352,23 @@
             // NewSeasonToolStripMenuItem
             // 
             this.NewSeasonToolStripMenuItem.Name = "NewSeasonToolStripMenuItem";
-            this.NewSeasonToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.NewSeasonToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.NewSeasonToolStripMenuItem.Text = "新建赛季";
             this.NewSeasonToolStripMenuItem.Click += new System.EventHandler(this.NewSeasonToolStripMenuItem_Click);
             // 
             // TotalSeasonsToolStripMenuItem
             // 
             this.TotalSeasonsToolStripMenuItem.Name = "TotalSeasonsToolStripMenuItem";
-            this.TotalSeasonsToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.TotalSeasonsToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.TotalSeasonsToolStripMenuItem.Text = "赛季总览";
             this.TotalSeasonsToolStripMenuItem.Click += new System.EventHandler(this.TotalSeasonsToolStripMenuItem_Click);
+            // 
+            // ScheduleManageToolStripMenuItem
+            // 
+            this.ScheduleManageToolStripMenuItem.Name = "ScheduleManageToolStripMenuItem";
+            this.ScheduleManageToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.ScheduleManageToolStripMenuItem.Text = "赛程安排";
+            this.ScheduleManageToolStripMenuItem.Click += new System.EventHandler(this.ScheduleManageToolStripMenuItem_Click);
             // 
             // systemManageToolStripMenuItem
             // 
@@ -495,12 +505,12 @@
             this.toolStripButton_exit.Text = "退出";
             this.toolStripButton_exit.Click += new System.EventHandler(this.toolStripButton_exit_Click);
             // 
-            // ScheduleManageToolStripMenuItem
+            // 添加比赛ToolStripMenuItem
             // 
-            this.ScheduleManageToolStripMenuItem.Name = "ScheduleManageToolStripMenuItem";
-            this.ScheduleManageToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
-            this.ScheduleManageToolStripMenuItem.Text = "赛程安排";
-            this.ScheduleManageToolStripMenuItem.Click += new System.EventHandler(this.ScheduleManageToolStripMenuItem_Click);
+            this.添加比赛ToolStripMenuItem.Name = "添加比赛ToolStripMenuItem";
+            this.添加比赛ToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.添加比赛ToolStripMenuItem.Text = "添加比赛";
+            this.添加比赛ToolStripMenuItem.Click += new System.EventHandler(this.添加比赛ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -517,6 +527,7 @@
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "管理界面";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.menuStrip_mainForm.ResumeLayout(false);
@@ -580,6 +591,7 @@
         private System.Windows.Forms.ToolStripMenuItem ViewMatchTeamToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton_backToHomePage;
         private System.Windows.Forms.ToolStripMenuItem ScheduleManageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 添加比赛ToolStripMenuItem;
     }
 }
 

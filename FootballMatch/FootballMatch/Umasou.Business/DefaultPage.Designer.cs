@@ -286,7 +286,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ComboBox comboBox_SerialOfDefaultPage;
         private System.Windows.Forms.Label label3;
-        private test test1;
+  
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TreeView treeView_GameReference;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;

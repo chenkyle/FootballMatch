@@ -24,7 +24,7 @@ namespace FootballMatch
         }
 
         #region[实例变量]
-        private SeasonMatch _match; //记录被选中的赛事
+  
         #endregion
 
         #region[窗体事件]
@@ -44,9 +44,14 @@ namespace FootballMatch
             //ReportOfInfo report = new ReportOfInfo(this);
            // report.Show();
 
-
-            OpenMatch form = new OpenMatch();
-            form.ShowDialog();
+            if(SystemParam.checkExistMatch()){   //如果系统存在赛事，显示打开赛事
+                OpenMatch form = new OpenMatch();
+                form.ShowDialog();
+            }
+            else{
+                CreateMatch newMatch = new CreateMatch();
+                newMatch.Show();
+           }
         }
         //窗体改变大小
         private void MainForm_Resize(object sender, EventArgs e)
@@ -404,6 +409,7 @@ namespace FootballMatch
         //新建一个联赛类型,填充相关联赛信息
         private void newMatchToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            
             CreateMatch createMatch = new CreateMatch();
             createMatch.ShowDialog();
         }
@@ -501,7 +507,19 @@ namespace FootballMatch
 
         }
 
-       
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+           
+
+        }
+
+        private void 添加比赛ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddNewGame addNewGameForm = new AddNewGame();
+            addNewGameForm.Show();
+
+        }
+
 
  
 

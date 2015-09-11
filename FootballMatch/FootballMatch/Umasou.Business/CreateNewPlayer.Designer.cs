@@ -32,15 +32,15 @@
             this.OK = new System.Windows.Forms.Button();
             this.groupBox_team = new System.Windows.Forms.GroupBox();
             this.comboBox_teamName = new System.Windows.Forms.ComboBox();
+            this.textBox_IDnum = new System.Windows.Forms.TextBox();
             this.textBox_teamManager = new System.Windows.Forms.TextBox();
             this.textBox_teamLeader = new System.Windows.Forms.TextBox();
             this.textBox_teamName = new System.Windows.Forms.TextBox();
+            this.label_IDnum = new System.Windows.Forms.Label();
             this.label_teamCoach = new System.Windows.Forms.Label();
             this.label_teamManager = new System.Windows.Forms.Label();
             this.label_teamLeader = new System.Windows.Forms.Label();
             this.label_teamName = new System.Windows.Forms.Label();
-            this.label_IDnum = new System.Windows.Forms.Label();
-            this.textBox_IDnum = new System.Windows.Forms.TextBox();
             this.groupBox_team.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,6 +66,7 @@
             // 
             // groupBox_team
             // 
+            this.groupBox_team.BackColor = System.Drawing.Color.White;
             this.groupBox_team.Controls.Add(this.comboBox_teamName);
             this.groupBox_team.Controls.Add(this.textBox_IDnum);
             this.groupBox_team.Controls.Add(this.textBox_teamManager);
@@ -91,6 +92,13 @@
             this.comboBox_teamName.Size = new System.Drawing.Size(192, 24);
             this.comboBox_teamName.TabIndex = 7;
             // 
+            // textBox_IDnum
+            // 
+            this.textBox_IDnum.Location = new System.Drawing.Point(126, 221);
+            this.textBox_IDnum.Name = "textBox_IDnum";
+            this.textBox_IDnum.Size = new System.Drawing.Size(192, 26);
+            this.textBox_IDnum.TabIndex = 6;
+            // 
             // textBox_teamManager
             // 
             this.textBox_teamManager.Location = new System.Drawing.Point(126, 126);
@@ -111,6 +119,15 @@
             this.textBox_teamName.Name = "textBox_teamName";
             this.textBox_teamName.Size = new System.Drawing.Size(192, 26);
             this.textBox_teamName.TabIndex = 4;
+            // 
+            // label_IDnum
+            // 
+            this.label_IDnum.AutoSize = true;
+            this.label_IDnum.Location = new System.Drawing.Point(38, 224);
+            this.label_IDnum.Name = "label_IDnum";
+            this.label_IDnum.Size = new System.Drawing.Size(72, 16);
+            this.label_IDnum.TabIndex = 2;
+            this.label_IDnum.Text = "身份证号";
             // 
             // label_teamCoach
             // 
@@ -148,26 +165,11 @@
             this.label_teamName.TabIndex = 0;
             this.label_teamName.Text = "球员姓名";
             // 
-            // label_IDnum
-            // 
-            this.label_IDnum.AutoSize = true;
-            this.label_IDnum.Location = new System.Drawing.Point(38, 224);
-            this.label_IDnum.Name = "label_IDnum";
-            this.label_IDnum.Size = new System.Drawing.Size(72, 16);
-            this.label_IDnum.TabIndex = 2;
-            this.label_IDnum.Text = "身份证号";
-            // 
-            // textBox_IDnum
-            // 
-            this.textBox_IDnum.Location = new System.Drawing.Point(126, 221);
-            this.textBox_IDnum.Name = "textBox_IDnum";
-            this.textBox_IDnum.Size = new System.Drawing.Size(192, 26);
-            this.textBox_IDnum.TabIndex = 6;
-            // 
             // CreateNewPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(392, 320);
             this.Controls.Add(this.groupBox_team);
             this.Controls.Add(this.Cancel);

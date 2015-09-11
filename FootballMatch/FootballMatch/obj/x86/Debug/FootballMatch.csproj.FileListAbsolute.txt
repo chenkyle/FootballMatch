@@ -176,3 +176,7 @@ D:\github\FootballMatch\FootballMatch\FootballMatch\obj\x86\Debug\FootballMatch.
 D:\github\FootballMatch\FootballMatch\FootballMatch\obj\x86\Debug\FootballMatch.csproj.GenerateResource.Cache
 D:\github\FootballMatch\FootballMatch\FootballMatch\bin\Debug\schedule.rpt
 D:\github\FootballMatch\FootballMatch\FootballMatch\bin\Debug\schedule.cs
+D:\github\FootballMatch\FootballMatch\FootballMatch\obj\x86\Debug\FootballMatch.Umasou.Business.TeamsExcelImport.resources
+D:\github\FootballMatch\FootballMatch\FootballMatch\obj\x86\Debug\FootballMatch.Umasou.Business.PlayerExcelImport.resources
+D:\github\FootballMatch\FootballMatch\FootballMatch\obj\x86\Debug\FootballMatch.Umasou.Business.AddNewGame.resources
+D:\github\FootballMatch\FootballMatch\FootballMatch\obj\x86\Debug\FootballMatch.Umasou.Business.ChooseGameOfSchedule.resources

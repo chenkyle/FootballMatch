@@ -30,16 +30,10 @@ namespace FootballMatch.Umasou.Business
         {
 
             SeasonMatch match;
-            //取出所有的赛事信息
-            List<SeasonMatch> list = MatchInfoDAO.getMatchInfo();
-            //清空下拉列表的数据信息
-            comboBox_matchNameOfTeam.Items.Clear();
-            for (int i = 0; i < list.Count; i++)
-            {//取出赛事信息
-                match = list[i];
-                //添加到下拉列表
-                comboBox_matchNameOfTeam.Items.Add(match.getName());
-            }
+            //取出赛事信息
+            match = SystemParam.getMatch();
+            textBox_matchNameOfTeam.Text = match.getName();
+            
         }
         #endregion
 
@@ -74,7 +68,7 @@ namespace FootballMatch.Umasou.Business
                 else
                 {
                     Team _team = new Team();
-                    _team.setMatchName(comboBox_matchNameOfTeam.SelectedItem.ToString());      
+                    _team.setMatchName(textBox_matchNameOfTeam.Text);      
                     _team.setName(textBox_teamName.Text);
                     _team.setTeamFullName(textBox_teamFullName.Text);
                     _team.setBirthDate(dateTimePicker_birthDate.Text);
@@ -110,7 +104,7 @@ namespace FootballMatch.Umasou.Business
         //清空文本框内容
         private void clearTextBox()
         {
-            comboBox_matchNameOfTeam.Text = "";
+            
             textBox_teamFullName.Text = "";
             textBox_location.Text = "";
             textBox_introduction.Text = "";
@@ -121,6 +115,14 @@ namespace FootballMatch.Umasou.Business
             textBox_teamCoach.Text = "";
         }
         #endregion
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+            TeamsExcelImport teamsExcelForm = new TeamsExcelImport();
+            teamsExcelForm.Show();
+
+        }
 
         
 

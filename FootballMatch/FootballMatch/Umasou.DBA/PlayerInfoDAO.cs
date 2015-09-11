@@ -250,9 +250,8 @@ namespace FootballMatch.Umasou.DBA
         public static bool updatePlayerInfo(FootballPlayer player)
         {
             DBUtility dbutility = new DBUtility();
-            string sql = "update player set playerName='" + player.getName() + "' ,postion='" + player.getPostion();
-            sql = sql + "' ,number=" + player.getNumber() +" ,teamName='" + player.getBelongTeam()+",'"+player.getIDnum();
-            sql = sql + "' where ID=" + player.getID();
+            string sql = "update player set playerName='" + player.getName() + "',postion='" + player.getPostion()+ "' ,number=" + player.getNumber() +" ,teamName='" + player.getBelongTeam()+"' where ID =" + player.getID();
+           
             try
             {
                 dbutility.openConnection();
@@ -290,6 +289,35 @@ namespace FootballMatch.Umasou.DBA
             {
                 dbutility.Close();
             }
+        }
+        
+        //往数据库中添加球员列表，返回是否添加成功的信息
+        public static void addPlayerList(List<FootballPlayer> playerlList)
+        {
+            DBUtility dbutility = new DBUtility();
+   try
+            {
+                dbutility.openConnection();
+                foreach (FootballPlayer player in playerlList)
+                {
+                    string SQL = "insert into player(playerName,postion,teamName,number,playerIDnum) values('";
+                    SQL = SQL + player.getName() + "','" + player.getPostion() + "','" + player.getBelongTeam() + "'," + player.getNumber() + ",'" + player.getIDnum() + "')";
+
+                  dbutility.ExecuteUpdate(SQL);
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                
+            }
+            finally
+            {
+                dbutility.Close();
+            }
+
+
+
         }
     }
 }

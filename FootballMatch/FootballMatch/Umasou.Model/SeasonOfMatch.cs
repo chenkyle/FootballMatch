@@ -15,7 +15,7 @@ namespace FootballMatch.Umasou.Model
         private int numOfSeason;           //赛季序号或次数
         private int scheduleId;     //赛程安排id
         private int currentGameTurn;  //当前赛事轮次
-        
+        private int numOfTurn;        //当前赛季比赛轮次数目
 
         public SeasonOfMatch() { 
 
@@ -26,13 +26,14 @@ namespace FootballMatch.Umasou.Model
             this.numOfSeason = _NumOfSeason;
         }
 
-        public SeasonOfMatch(int _id, string _matchName, string _seasonDescription, int _numOfSeason)
+        public SeasonOfMatch(int _id, string _matchName, string _seasonDescription, int _numOfSeason,int _numOfTurn)
         {
             // TODO: Complete member initialization
             this.id = _id;
             this.matchName = _matchName;
             this.numOfSeason = _numOfSeason;
             this.seasonDescription = _seasonDescription;
+            this.numOfTurn = _numOfTurn;
         }
 
 
@@ -45,7 +46,7 @@ namespace FootballMatch.Umasou.Model
         public int getNumOfSeason() { return numOfSeason; }
         public int getScheduleId() { return scheduleId; }
         public int getCurrentGameTurn() { return currentGameTurn; }
-
+        public int getNumOfTurn() { return numOfTurn; }
         //set
         public void setId(int _id) {
             this.id = _id;
@@ -74,6 +75,9 @@ namespace FootballMatch.Umasou.Model
             this.currentGameTurn = _currentGameTurn;
         }
 
+        public void setNumOfTurn(int num) {
+            this.numOfTurn = num;
+        }
 
     }
 }

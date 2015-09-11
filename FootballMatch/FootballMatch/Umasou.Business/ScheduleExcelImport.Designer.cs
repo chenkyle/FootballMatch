@@ -48,7 +48,7 @@
             this.dataGridView_ExcelImport.RowTemplate.Height = 23;
             this.dataGridView_ExcelImport.Size = new System.Drawing.Size(532, 213);
             this.dataGridView_ExcelImport.TabIndex = 0;
-            // 
+             // 
             // button_deleteMultiRows
             // 
             this.button_deleteMultiRows.Location = new System.Drawing.Point(203, 305);
@@ -87,6 +87,7 @@
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 6;
             this.label1.Text = "文件名";
+      
             // 
             // textBox_fileName
             // 
@@ -94,7 +95,7 @@
             this.textBox_fileName.Name = "textBox_fileName";
             this.textBox_fileName.Size = new System.Drawing.Size(327, 21);
             this.textBox_fileName.TabIndex = 7;
-            // 
+             // 
             // button_openFile
             // 
             this.button_openFile.Location = new System.Drawing.Point(425, 264);

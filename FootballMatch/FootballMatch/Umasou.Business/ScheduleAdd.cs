@@ -53,7 +53,7 @@ namespace FootballMatch.Umasou.Business
             
            // this.label_matchName.Text = DefaultSet.getDefaultMatch();
             this.label_matchName.Text = SystemParam.getMatch().getName();
-            this.label_seasonNum.Text =  Convert.ToString(SystemParam.getCurrentSelectedSeaon().getNumOfSeason());
+            this.label_seasonNum.Text =  Convert.ToString(SystemParam.getCurrentSelectedSeason().getNumOfSeason());
             this.dateTimePicker_gameDate.Height = this.dataGridView1.Height;
 
         }
@@ -111,7 +111,7 @@ namespace FootballMatch.Umasou.Business
             
             DataTable teamTable = new DataTable();
             DBUtility dbutility = new DBUtility();
-            string SQL = "select teamName from team where matchName='重庆大学研究生足球赛' order by ID";
+            string SQL = "select teamName from team where matchName='"+SystemParam.getMatch().getName()+"' order by ID";
             try
             {
                 dbutility.openConnection();
@@ -198,8 +198,8 @@ namespace FootballMatch.Umasou.Business
                            for(int k=0;k<rowNum;k++ ){
 
                                Schedule s = new Schedule();  //实例化一条赛程记录，存放到list中
-                               s.setMatchId(8);
-                               s.setSeasonId(1);
+                               s.setMatchId(SystemParam.getMatch().getID());
+                               s.setSeasonId(SystemParam.getCurrentSelectedSeason().getId());
                                for (int l = 0; l < cellNum;l++ ) {
                                    switch (l)
                                    {

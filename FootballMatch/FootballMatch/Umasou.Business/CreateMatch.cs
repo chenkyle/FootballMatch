@@ -17,6 +17,7 @@ namespace FootballMatch.Umasou.Business
         public CreateMatch()
         {
             InitializeComponent();
+            SystemParam.setCreatMatchForm(this);
         }
 
         #region[窗体事件]
@@ -84,6 +85,10 @@ namespace FootballMatch.Umasou.Business
                     if (SystemParam.getMatchManageForm() != null)  //若该窗体打开时，刷新该窗体的数据信息
                     {
                         SystemParam.getMatchManageForm().showMatchData();
+                    }
+                    if(SystemParam.getOpenMatchForm()!=null){
+                        SystemParam.getOpenMatchForm().showMatchData();
+                        SystemParam.getOpenMatchForm().cleanListBox();
                     }
                     //关闭本页面
                     return true;

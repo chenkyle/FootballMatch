@@ -8,6 +8,7 @@ using FootballMatch.Umasou.Model;
 using FootballMatch.Umasou.GameManage;
 using FootballMatch.Umasou.CardRecord;
 using FootballMatch.Umasou.View;
+using FootballMatch.Umasou.DBA;
 
 namespace FootballMatch.Umasou.Util
 {
@@ -24,8 +25,10 @@ namespace FootballMatch.Umasou.Util
         private static string _currentSelectedMatchName;// 当前选定的赛事名称
         private static SeasonOfMatch  _currentSelectedSeason; //当前选定的赛季
         private static int _currentTurn; // 当前轮次
-
-        private static ScheduleAdd _scheduleManage; 
+        private static AddNewGame _addNewGameForm; 
+        private static ScheduleAdd _scheduleManage;
+        private static OpenMatch _openMatch;
+        private static CreateMatch _createMatchForm;  
         private static DefaultPage _defaultPage; //软件默认显示首页
         private static CreateNewSeason _createNewSeason;  //记录被打开的赛事新建界面
         private static SeasonManage _seasonManage; //记录被打开的赛季管理界面
@@ -52,6 +55,13 @@ namespace FootballMatch.Umasou.Util
             _yellowCardSwitchRed = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["yellowSwitchRedNum"]);
         }
         //取数据
+
+        public static AddNewGame getAddNewGameForm() {
+            return _addNewGameForm;
+        }
+        public static CreateMatch getCreateMatchForm() {
+            return _createMatchForm;
+        }
         public static int getSwitchNum()
         {
             //读取配置文件中几张黄牌累计成为红牌
@@ -68,14 +78,17 @@ namespace FootballMatch.Umasou.Util
             return _currentSelectedMatchName;
         }
 
-        public static SeasonOfMatch getCurrentSelectedSeaon() {
+        public static SeasonOfMatch getCurrentSelectedSeason() {
             return _currentSelectedSeason;
         }
         public static int getcurrentTurn() {
             return _currentTurn;
         }
 
-
+        public static OpenMatch getOpenMatchForm() {
+            return _openMatch;
+        }
+         
         public static DefaultPage getDefaultPageForm() {
 
             return _defaultPage;
@@ -182,9 +195,18 @@ namespace FootballMatch.Umasou.Util
         public static void setCurrentTurn(int currentTurn){
             _currentTurn = currentTurn;
     } // 当前轮次
-            
 
+        public static void setCreatMatchForm(CreateMatch createMatchForm) {
+            _createMatchForm = createMatchForm; 
+        }
 
+        public static void setAddNewGame(AddNewGame addNewGame) {
+            _addNewGameForm = addNewGame;
+        }
+        public static void setOpenMatchForm(OpenMatch openMatch) {
+
+            _openMatch = openMatch;
+        }
         public static void setMainForm(MainForm form)
         {
             _mainForm = form;
@@ -274,5 +296,17 @@ namespace FootballMatch.Umasou.Util
          {
              return _scheduleManage;
          }
+
+
+        //检查当前是否存在赛事，不存在则弹出新建赛事
+         public static bool checkExistMatch() {
+             bool flag = false;
+             if (MatchInfoDAO.checkMatchTableIsNull())
+                 flag = true;
+                 return flag;
+         
+         }
+
+
     }
 }

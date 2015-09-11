@@ -8,12 +8,16 @@ using System.Text;
 using System.Windows.Forms;
 using FootballMatch.Umasou.Model;
 using FootballMatch.Umasou.DBA;
+using FootballMatch.Umasou.Util;
 
 
 namespace FootballMatch.Umasou.Business
 {
     public partial class playerManage : Form
     {
+        private List<Team> teamList;
+        private string selectedTeamName="";
+
         public playerManage(MainForm mainForm)
         {
             InitializeComponent();
@@ -35,7 +39,7 @@ namespace FootballMatch.Umasou.Business
         private void playerManage_Shown(object sender, EventArgs e)
         {
             //显示数据
-            this.showPlayerData();
+            this.showCertainTeamPlayerData();
             //设置窗体最大化
             this.WindowState = FormWindowState.Maximized;
         }
@@ -98,21 +102,26 @@ namespace FootballMatch.Umasou.Business
 
         #region[显示数据]
         //显示赛事的基本信息
-        public void showPlayerData()
-        {
-            //先清除DataGridView中的数据
-            if (dataGridView_playerManage.Rows.Count > 0)
+        public void showCertainTeamPlayerData()
+        {   
+           //给队伍列表添加数据源
+            teamList = TeamInfoDAO.getTeamInfoOfCertainMatch(SystemParam.getMatch());
+            ////如果当前赛事任何球队，则弹窗要求创建一些球队
+            if (teamList.Count != 0)  //存在相应的赛季
             {
-                dataGridView_playerManage.Rows.Clear();
+                listBox_TeamList.Items.Clear();
+                foreach (Team t in teamList)
+                {
+                    listBox_TeamList.Items.Add(t.getName());
+                }
+
+                this.loadDataOfDatagridView();
+
             }
-            //取出数据
-            List<FootballPlayer> list = ContentDAO.getPlayerInfo();
-            //往dataGridView中添加数据
-            for (int i = 0; i < list.Count; i++)
-            {
-                player = list[i];  //取出线性表中的赛事的信息
-                dataGridView_playerManage.Rows.Add(player.getID().ToString(), player.getName(), player.getNumber().ToString(), player.getPostion(), player.getBelongTeam(),player.getIDnum());
+            else {
+                MessageBox.Show("此赛事当前没有球队，请您创建球队！");
             }
+
         }
         #endregion
 
@@ -129,10 +138,10 @@ namespace FootballMatch.Umasou.Business
             dataGridView_playerManage.Top = preTop + 10;
             dataGridView_playerManage.Left = preLeft + 10;
             dataGridView_playerManage.Width = preWidth - 20;
-            dataGridView_playerManage.Height = preHeight - 30 - groupBox_teamManage.Height;
+            dataGridView_playerManage.Height = preHeight - 30 - groupBox_playerManage.Height;
 
-            groupBox_teamManage.Left = preRight - 10 - groupBox_teamManage.Width;
-            groupBox_teamManage.Top = preBottom - 10 - groupBox_teamManage.Height;
+            groupBox_playerManage.Left = preRight - 10 - groupBox_playerManage.Width;
+            groupBox_playerManage.Top = preBottom - 10 - groupBox_playerManage.Height;
         }
         #endregion
 
@@ -183,7 +192,7 @@ namespace FootballMatch.Umasou.Business
                     //执行删除球队信息操作
                     PlayerInfoDAO.deletePlayerInfo(list);
                     //刷新表格中的数据信息
-                    this.showPlayerData();
+                    this.showCertainTeamPlayerData();
                 }
                 catch
                 {
@@ -225,7 +234,7 @@ namespace FootballMatch.Umasou.Business
                     //执行删除球队信息操作
                     PlayerInfoDAO.deletePlayerInfo(list);
                     //刷新表格中的数据信息
-                    this.showPlayerData();
+                    this.showCertainTeamPlayerData(); 
                 }
                 catch
                 {
@@ -245,11 +254,15 @@ namespace FootballMatch.Umasou.Business
             if (rowIndex >= 0)
             {
                 try
-                {
+                {   if(this.dataGridView_playerManage.Rows.Count>0){
+
                     int playerID = Convert.ToInt32(dataGridView_playerManage.Rows[rowIndex].Cells["Player_ID"].Value);
                     FootballPlayer player = PlayerInfoDAO.getPlayerInfo(playerID);
                     AlterPlayer form = new AlterPlayer(player);
-                    form.ShowDialog();
+                    form.ShowDialog();}
+                else{
+                    MessageBox.Show("当前球队无球员!");
+                }
                 }
                 catch (NullReferenceException ex)
                 {
@@ -258,5 +271,57 @@ namespace FootballMatch.Umasou.Business
             }
         }
         #endregion
+
+        //增加事件重画ListBox
+        private void listBox_TeamList_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            e.DrawFocusRectangle();
+            StringFormat strFmt = new System.Drawing.StringFormat();
+           // strFmt.Alignment = StringAlignment.Center; //文本垂直居中
+            //strFmt.LineAlignment = StringAlignment.Center; //文本水平居中
+            e.Graphics.DrawString(listBox_TeamList.Items[e.Index].ToString(), e.Font, new SolidBrush(e.ForeColor), e.Bounds, strFmt);
+        }
+        
+        
+        
+        //选定值改变，则右侧的datagridview重新获取相应球队的球员信息
+        private void listBox_TeamList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+             selectedTeamName =listBox_TeamList.SelectedItem.ToString().Trim();
+             label_teamName.Text = selectedTeamName;
+            this.loadDataOfDatagridView();
+                
+            
+
+        }
+
+        public void loadDataOfDatagridView()
+        {
+
+            //先清除dataGridView中的数据
+            if (this.dataGridView_playerManage.Rows.Count > 0)
+            {
+                dataGridView_playerManage.Rows.Clear();
+            }
+            //取出数据
+            List<FootballPlayer> list = ContentDAO.getPlayerInfoOfCertainTeam(selectedTeamName); 
+            for (int i = 0; i < list.Count;i++ )
+            {
+                player = list[i];
+                dataGridView_playerManage.Rows.Add(player.getID(),player.getName(),player.getNumber(),player.getNumber().ToString(),player.getPostion(),player.getBelongTeam(),player.getIDnum());
+            }
+        }
+
+        private void linkLabel_PlayerExcelImport_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+             PlayerExcelImport playerExcel = new PlayerExcelImport();
+             playerExcel.Show();
+
+
+        }
+
+
     }
 }

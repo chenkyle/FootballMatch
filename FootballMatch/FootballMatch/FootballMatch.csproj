@@ -85,6 +85,18 @@
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <Compile Include="Umasou.Business\AddNewGame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\AddNewGame.Designer.cs">
+      <DependentUpon>AddNewGame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\ChooseGameOfSchedule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\ChooseGameOfSchedule.Designer.cs">
+      <DependentUpon>ChooseGameOfSchedule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Umasou.Business\OpenSeason.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +116,12 @@
     <Compile Include="RecordDetail.Designer.cs">
       <DependentUpon>RecordDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Umasou.Business\PlayerExcelImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\PlayerExcelImport.Designer.cs">
+      <DependentUpon>PlayerExcelImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Umasou.Business\ScheduleExcelImport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +133,12 @@
     </Compile>
     <Compile Include="Umasou.Business\ScheduleManage.Designer.cs">
       <DependentUpon>ScheduleManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Umasou.Business\TeamsExcelImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Umasou.Business\TeamsExcelImport.Designer.cs">
+      <DependentUpon>TeamsExcelImport.cs</DependentUpon>
     </Compile>
     <Compile Include="Umasou.Business\test.cs">
       <AutoGen>True</AutoGen>
@@ -306,6 +330,7 @@
     <Compile Include="Umasou.Model\Team.cs" />
     <Compile Include="Umasou.Util\checkSwitchResult.cs" />
     <Compile Include="Umasou.Util\CheckYellowSwitchRed.cs" />
+    <Compile Include="Umasou.Util\ExcelImport.cs" />
     <Compile Include="Umasou.Util\SystemParam.cs" />
     <Compile Include="Umasou.View\MatchChart.cs">
       <SubType>Form</SubType>
@@ -325,6 +350,10 @@
     <Compile Include="Umasou.View\TeamChart.Designer.cs">
       <DependentUpon>TeamChart.cs</DependentUpon>
     </Compile>
+    <Content Include="Resources\足球场.jpg" />
+    <Content Include="Resources\足球场1.1.jpg" />
+    <Content Include="Resources\足球场1.2.jpg" />
+    <Content Include="Resources\足球场2.jpg" />
     <Content Include="Umasou.Business\playerAndCardsInfo.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>playerAndCardsInfo.cs</LastGenOutput>
@@ -343,8 +372,14 @@
       <LastGenOutput>schedule.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Umasou.Business\AddNewGame.resx">
+      <DependentUpon>AddNewGame.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Umasou.Business\AvaliableInfo.resx">
       <DependentUpon>AvaliableInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\ChooseGameOfSchedule.resx">
+      <DependentUpon>ChooseGameOfSchedule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Umasou.Business\CreateNewSeason.resx">
       <DependentUpon>CreateNewSeason.cs</DependentUpon>
@@ -354,6 +389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Umasou.Business\OpenSeason.resx">
       <DependentUpon>OpenSeason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\PlayerExcelImport.resx">
+      <DependentUpon>PlayerExcelImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Umasou.Business\ReportOfInfo.resx">
       <DependentUpon>ReportOfInfo.cs</DependentUpon>
@@ -369,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Umasou.Business\SeasonManage.resx">
       <DependentUpon>SeasonManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Umasou.Business\TeamsExcelImport.resx">
+      <DependentUpon>TeamsExcelImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Umasou.CardRecord\addPlayerCardRecordcs.resx">
       <DependentUpon>addPlayerCardRecordcs.cs</DependentUpon>
@@ -449,6 +490,7 @@
     <EmbeddedResource Include="Umasou.View\TeamChart.resx">
       <DependentUpon>TeamChart.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Document\schedule.xls" />
     <None Include="Document\比赛说明.docx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

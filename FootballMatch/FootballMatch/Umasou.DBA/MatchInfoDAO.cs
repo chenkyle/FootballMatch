@@ -327,5 +327,33 @@ namespace FootballMatch.Umasou.DBA
             }
             return switchNum;
         }
+        //检查赛事表中是否为空,不为空返回true
+        public static bool checkMatchTableIsNull() {
+
+            //执行查询数据库操作
+            DBUtility dbutility = new DBUtility();
+            string SQL = "select count(ID) from matchinfo ";
+            try
+            {
+                dbutility.openConnection();
+                MySqlDataReader rd = dbutility.ExecuteQuery(SQL);
+                while (rd.Read())
+                {
+                    if (Convert.ToInt32(rd[0]) != 0)
+                        return true;  
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                dbutility.Close();
+            }
+
+            return false;
+        }
+
     }
 }

@@ -60,7 +60,7 @@ namespace FootballMatch.Umasou.Business
             }
             else
             {
-                List<Team> _teamList = TeamInfoDAO.getTeamInfo();
+                List<Team> _teamList = TeamInfoDAO.getTeamInfoOfCertainMatch(SystemParam.getMatch());
                 Team _team = new Team();
                 comboBox_teamName.Items.Add("");  //添加一个空白字符串
                 for (int i = 0; i < _teamList.Count; i++)
@@ -104,7 +104,7 @@ namespace FootballMatch.Umasou.Business
                     {
                         MessageBox.Show("修改球员信息成功", "修改成功", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                          //刷新管理球队界面数据信息
-                        SystemParam.getPlayerManageForm().showPlayerData();
+                        SystemParam.getPlayerManageForm().showCertainTeamPlayerData();
                         //关闭本页面
                         this.Close();
                     }

@@ -20,7 +20,7 @@ namespace FootballMatch.Umasou.Business
         public OpenMatch()
         {
             InitializeComponent();
-          
+            SystemParam.setOpenMatchForm(this);
         }
 
         #region[实例变量]
@@ -55,18 +55,28 @@ namespace FootballMatch.Umasou.Business
                         textBox_Name.Text = match.getName();
                         //
                         seasonList= SeasonInfoDAO.getSeasonsOfCertainMatch(match.getName());
-                        listBox_Seasons.Items.Clear();
-                        richTextBox_SeasonDescription.Text = "";
-                        foreach (SeasonOfMatch s in seasonList)
+                        this.cleanListBox();
+                   ////如果当前赛事没有创建赛季，则弹窗要求创建一个赛季
+                        if (seasonList.Count != 0)  //存在相应的赛季
                         {
-                            listBox_Seasons.Items.Add("第"+s.getNumOfSeason()+"赛季");
-                            
+                            listBox_Seasons.Items.Clear();
+                            richTextBox_SeasonDescription.Text = "";
+                            foreach (SeasonOfMatch s in seasonList)
+                            {
+                                listBox_Seasons.Items.Add("第" + s.getNumOfSeason() + "赛季");
+
+                            }
+
+
+                            richTextBox_MatchDescription.Text = match.getDescription();
                         }
-                     
-
-                        richTextBox_MatchDescription.Text = match.getDescription();
+                        else {
+                            MessageBox.Show("您当前选中的赛事没有设置赛季，请至少添加一个赛季！","无赛季信息");
+                            SystemParam.setMatch(match);
+                            CreateNewSeason newSeason = new CreateNewSeason();
+                            newSeason.Show();
                         
-
+                        }
 
                     }
                     catch (NullReferenceException ex)
@@ -171,7 +181,11 @@ namespace FootballMatch.Umasou.Business
                 else
                 {
                     SystemParam.getAvaliableInfoForm().flushDataInfo(SystemParam.getMatch());
-                    SystemParam.getTeamManageForm().flushDataInfo();
+
+                    try { SystemParam.getTeamManageForm().flushDataInfo(); }
+
+                       catch (Exception ex) { MessageBox.Show("当前赛事没有球队"); }
+
                 }
 
                  
@@ -194,7 +208,7 @@ namespace FootballMatch.Umasou.Business
 
         #region[显示数据]
         //显示赛事的基本信息
-        private void showMatchData()
+        public  void showMatchData()
         {
             //先清除DataGridView中的数据
             if (dataGridView_match.Rows.Count > 0)
@@ -203,6 +217,8 @@ namespace FootballMatch.Umasou.Business
             }
             //取出数据
             List<SeasonMatch> list = ContentDAO.getMatchInfo();
+            Console.WriteLine("test");
+            Console.WriteLine(list.Count);
             //往dataGridView中添加数据
             for (int i = 0; i < list.Count; i++)
             {
@@ -214,13 +230,15 @@ namespace FootballMatch.Umasou.Business
         //选择的值改变，则下边的赛季描述改变
         private void listBox_Seasons_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if(seasonList.Count>0){ 
             foreach (SeasonOfMatch s in seasonList)
             {
-                if (listBox_Seasons.SelectedItem.ToString().Trim() == ("第" + s.getNumOfSeason() + "赛季"))
+                  
+                if (listBox_Seasons.SelectedItem.ToString().Trim() == ("第" + s.getNumOfSeason() + "赛季"))    //此处仍然存在空值问题
                 { season = s; //作为选定的赛季
                 richTextBox_SeasonDescription.Text = season.getSeasonDescription();
                 }
+              }
             }
             
              
@@ -295,6 +313,17 @@ namespace FootballMatch.Umasou.Business
 
         }
 
+        private void linkLabel_newMatch_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CreateMatch newMatch = new CreateMatch();     
+            newMatch.Show();
+            
+        }
+
+        public void cleanListBox() {
+            this.listBox_Seasons.Items.Clear();
+        
+        }
 
     }
 

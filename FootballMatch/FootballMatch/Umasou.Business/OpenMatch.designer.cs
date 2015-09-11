@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView_match = new System.Windows.Forms.DataGridView();
             this.match_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.matchName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +45,8 @@
             this.richTextBox_SeasonDescription = new System.Windows.Forms.RichTextBox();
             this.listBox_Seasons = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.linkLabel_newMatch = new System.Windows.Forms.LinkLabel();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_match)).BeginInit();
             this.groupBox_MatchDescription.SuspendLayout();
             this.groupBox_Name.SuspendLayout();
@@ -57,14 +59,14 @@
             this.dataGridView_match.AllowUserToDeleteRows = false;
             this.dataGridView_match.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_match.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_match.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_match.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView_match.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_match.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.match_ID,
@@ -216,12 +218,37 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "选择赛季";
             // 
+            // linkLabel_newMatch
+            // 
+            this.linkLabel_newMatch.AutoSize = true;
+            this.linkLabel_newMatch.ForeColor = System.Drawing.Color.White;
+            this.linkLabel_newMatch.LinkColor = System.Drawing.Color.Blue;
+            this.linkLabel_newMatch.Location = new System.Drawing.Point(109, 318);
+            this.linkLabel_newMatch.Name = "linkLabel_newMatch";
+            this.linkLabel_newMatch.Size = new System.Drawing.Size(88, 16);
+            this.linkLabel_newMatch.TabIndex = 8;
+            this.linkLabel_newMatch.TabStop = true;
+            this.linkLabel_newMatch.Text = "创建新赛事";
+            this.linkLabel_newMatch.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_newMatch_LinkClicked);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label2.Location = new System.Drawing.Point(15, 318);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 16);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "没有赛事？";
+            // 
             // OpenMatch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(721, 368);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.linkLabel_newMatch);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox_Seasons);
             this.Controls.Add(this.groupBox_SeasonDescription);
@@ -266,5 +293,7 @@
         private System.Windows.Forms.RichTextBox richTextBox_SeasonDescription;
         private System.Windows.Forms.ListBox listBox_Seasons;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.LinkLabel linkLabel_newMatch;
+        private System.Windows.Forms.Label label2;
     }
 }

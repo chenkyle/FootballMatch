@@ -80,6 +80,6 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private schedule schedule1;
+  
     }
 }

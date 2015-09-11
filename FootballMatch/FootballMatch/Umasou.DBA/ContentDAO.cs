@@ -355,6 +355,35 @@ namespace FootballMatch.Umasou.DBA
             return list;
         }
 
+        //查询某球队球员信息
+        public static List<FootballPlayer> getPlayerInfoOfCertainTeam(string teamName)
+        {
+            //声明实例
+            List<FootballPlayer> list = new List<FootballPlayer>();
+            //执行查询数据库操作
+            DBUtility dbutility = new DBUtility();
+            string SQL = "select ID,playerName,number,postion,teamName ,playerIDnum from player where teamName ='"+teamName+"' order by ID";
+            try
+            {
+                dbutility.openConnection();
+                MySqlDataReader rd = dbutility.ExecuteQuery(SQL);
+                while (rd.Read())
+                {
+                    list.Add(new FootballPlayer(Convert.ToInt32(rd[0]), Convert.ToString(rd[1]), Convert.ToInt32(rd[2]), Convert.ToString(rd[3]), Convert.ToString(rd[4]), Convert.ToString(rd[5])));
+                }
+            }
+            catch (MySqlException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                dbutility.Close();
+            }
+            return list;
+        }
+
+
        #region[删除记录]
         //删除球队信息
         public static void deleteTeamInfo(int teamID)
